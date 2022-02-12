@@ -11,7 +11,7 @@ class Solution {
             else if(arr[mid]>lval&&arr[mid]<rval)low=mid+1;
             else if(arr[mid]<lval&&arr[mid]>rval)high=mid-1;
             else{
-                if(arr[low]<=arr[high])low++;
+                if(arr[low]<=arr[high])low++;/////to handle duplicate elements in bitonic array
                 else high--;
             }
         }
