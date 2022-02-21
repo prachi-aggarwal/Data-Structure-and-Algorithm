@@ -1,0 +1,63 @@
+
+class Solution
+{
+        public static long mergesort(long[] nums,int left,int right){
+        if(left>=right)return 0;
+    
+        int mid=left+(right-left)/2;
+     long leftcount=   mergesort(nums,left,mid);
+        long rightcount=mergesort(nums,mid+1,right);
+      long ans=  merge(nums,left,mid,mid+1,right);
+      return leftcount+rightcount+ans;
+    }
+        public static long merge(long [] nums,int left,int mid,int nextmid,int right){
+        long [] res=new long[mid-left+1+right-nextmid+1];
+        int k=0;
+        int ptr1=left;
+        int ptr2=nextmid;
+        long invcount=0;
+        long count=0*1l;
+        while(ptr1<=mid&&ptr2<=right){
+            if(nums[ptr1]>nums[ptr2]){
+                res[k]=nums[ptr2];
+                ptr2++;
+                k++;
+                invcount = invcount+mid-ptr1+1;
+                
+            }
+            else{
+                res[k]=nums[ptr1];
+                ptr1++;
+                k++;  
+            }
+            
+        }
+        while(ptr1<=mid){
+         
+                res[k]=nums[ptr1];
+                ptr1++;
+                k++;
+            }
+            
+    while(ptr2<=right){
+                        res[k]=nums[ptr2];
+                ptr2++;
+                k++;
+        
+    }
+        for(int i=left;i<=right;i++){
+            nums[i]=res[i-left];        }
+        
+            return invcount;
+    }
+
+    
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    static long inversionCount(long nums[], long N)
+    {
+      return  mergesort(nums,0,nums.length-1);
+        
+    }
+}
