@@ -1,0 +1,28 @@
+public static int size(Node root) {
+  if (root == null) return 0;
+
+  int count = 1;
+  for (Node child : root.children) {
+    count += size(child);
+  }
+
+  return count;
+}
+
+
+
+
+
+
+
+
+
+
+public static int max(Node root) {
+  int maximum = root.data;
+  for (Node child : root.children) {
+    maximum = Math.max(maximum, max(child));
+  }
+
+  return maximum;
+}
