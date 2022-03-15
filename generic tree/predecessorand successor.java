@@ -16,5 +16,8 @@ static Node predecessor;
        return;
    }
    for(Node child:node.children){
+     if(state==1){
+       return;//jb complete milgya toh agge na chalane ko loop optimise krdia,wrna iske bina  b correct tha
+     }
        predecessorAndSuccessor(child,data);
    }
